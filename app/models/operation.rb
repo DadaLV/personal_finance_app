@@ -1,2 +1,2 @@
 class Operation < ApplicationRecord
-  belongs -to :category
+  belongs to :category
