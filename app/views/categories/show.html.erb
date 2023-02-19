@@ -1,0 +1,32 @@
+<%= stylesheet_link_tag 'category_show' %>
+
+
+<div class="container">
+  <h3>Category <%= @category.name %></h3>
+  <p><% @category.description %></p>
+  </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>        
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+            <td><%= @category.name %></td>
+            <td><%= @category.description %></td>
+            
+            <%# <td><%= link_to "Edit", edit_category_path(@category), class: "btn btn-primary"</td> %> 
+          
+          </tr>
+        
+      </tbody>
+    </table>
+  
+
+  <%# <%= link_to "Back", categories_path, class: "btn btn-secondary" %> 
+</div>
+
+  
