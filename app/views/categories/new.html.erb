@@ -1,5 +1,5 @@
-<h2 class="text-center mt-4">New Category</h2>
-<div class="container col-6">  
+<div class="container col-6">
+  <h2>New Category</h2>  
   <div class="row justify-content-center">
     <div class="col-6">
       <%= form_with(model: @category, local: true) do |form| %>
@@ -22,7 +22,7 @@
           <%= form.text_area :description, class: 'col-2 form-control', placeholder:"Description of category" %>
         </div>
         <div class="actions mb-3">
-          <%= form.submit class: 'btn btn-primary' %>
+          <%= form.submit class: 'btn btn-info' %>
         </div>
       <% end %>      
     </div>    
