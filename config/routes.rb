@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "pages#home"
   resources :operations, only: [:show, :index]
-  resources :categories, only: [:show, :index, :new, :create]
+  resources :categories, only: [:show, :index, :new, :create, :edit]
 
 end
