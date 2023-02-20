@@ -37,6 +37,11 @@ class CategoriesController < ApplicationController
       render "edit"
     end
   end
+
+  def destroy
+    @category.destroy
+    redirect_to categories_url, notice: 'Category was successfully destroyed.'
+  end
   
   private
 
