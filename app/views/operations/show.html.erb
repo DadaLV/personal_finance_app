@@ -1,0 +1,42 @@
+<%= stylesheet_link_tag 'category_show' %>
+
+
+<div class="container col-6">
+  <h3>Operation <%= @operation.description %></h3>
+  <p><%= @operation.category.name %></p>
+  
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Date</th>
+          <th>Created At</th>
+          <th>Category</th>
+          <th>Actions</th>        
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+            <td><%= @operation.description %></td>
+            <td><%= @operation.odate %></td>
+            <td><%= @operation.created_at.strftime("%B %d, %Y %I:%M %p") %></td>
+            <td><%= @operation.category.name %></td>
+            
+            <td>
+              <div class="d-flex justify-content gap-3">
+                <%= link_to "Edit", edit_operation_path(@operation), class: "btn btn-warning" %>
+                
+                <%= button_to "Delete", operation_path(@operation), method: :delete, onclick: "return confirm('Are you sure?')", class: "btn btn-danger" %>
+              </div>
+            </td> 
+          
+          </tr>
+        
+      </tbody>
+    </table>
+  
+
+  <%# <%= link_to "Back", categories_path, class: "btn btn-secondary" %> 
+  <%= link_to "Return to operations listing", operations_path, class: "btn btn-info" %>
+</div>
