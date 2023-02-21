@@ -1,0 +1,34 @@
+<h1>Statistics</h1>
+
+<%= form_tag statistics_path, method: :get do %>
+  <div class="form-group">
+    <%= label_tag :start_date, "Start date" %>
+    <%= date_field_tag :start_date, nil, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= label_tag :end_date, "End date" %>
+    <%= date_field_tag :end_date, nil, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= label_tag :operations, "Operations" %>
+    <%= select_tag :operations, options_for_select(Operation.all.map{ |o| [o.description, o.id] }), {}, class: "form-control", multiple: true %>
+  </div>
+
+  <%= submit_tag "Generate statistics", class: "btn btn-primary" %>
+<% end %>
+
+<% if @statistics %>
+  <h2>Overall statistics</h2>
+  <p><%= @statistics[:total_count] %> operations performed</p>
+
+  <h2>Statistics by year</h2>
+  <div id="chart_by_year"></div>
+
+  <h2>Statistics by month</h2>
+  <div id="chart_by_month"></div>
+
+  <h2>Statistics by day</h2>
+  <div id="chart_by_day"></div>
+<% end %>
