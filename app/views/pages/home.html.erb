@@ -33,6 +33,7 @@
   <div class="col-md-6">
     <h2>Reports</h2>
     <p>View reports to get insights into your finances and make better financial decisions.</p>
+    <%= line_chart Operation.group_by_day(:created_at).sum(:amount) %>
     <%# <%= link_to "View Reports", reports_path, class: "btn btn-primary" %> 
   </div>
 </div>
