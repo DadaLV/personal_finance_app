@@ -6,4 +6,7 @@ Rails.application.routes.draw do
   resources :operations, only: [:show, :index, :new, :create, :edit, :update, :destroy]
   resources :categories
 
+  get "operations/graph"
+
+
 end

@@ -1,8 +1,17 @@
 class OperationsController < ApplicationController
   before_action :set_operation, only: [:show, :edit, :update, :destroy]
 
+  
   def index
     @operations = Operation.all 
+    operations_data = Operation.all.map { |op| [op.odate.strftime("%B %d, %Y"), op.amount.to_s] }
+    operations_data_sorted = operations_data.sort
+
+    @dates = operations_data_sorted.map { |e| e[0] }
+    @amount = operations_data_sorted.map { |e| e[1].to_i }
+    # @dates = ["1", "2", "3", "4", "5"]
+    # @amount = [10, 20, 30, 40, 0]
+    
   end
 
   def show
@@ -40,6 +49,14 @@ class OperationsController < ApplicationController
     @operation.destroy
     flash[:notice] = "Operation was successfully deleted"
     redirect_to operations_url
+  end
+
+  def graph
+    # operations_data = Operation.all.map { |op| [op.odate.to_s, op.amount.to_s] }
+    # @dates = operations_data.map { |e| e[0] }
+    # amount = operations_data.map { |e| e[1].to_i }
+    # @dates = ["1", "2", "3", "4", "5"]
+    # @amount = [10, 20, 30, 40, 0]
   end
 
   private

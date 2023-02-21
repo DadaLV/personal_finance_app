@@ -8,8 +8,8 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Amount</th>
       <th>Date</th>
-      <th>Created At</th>
       <th>Category</th>
       <th>Actions</th>
     </tr>
@@ -18,8 +18,8 @@
     <% @operations.each do |operation| %>
       <tr>
         <td><%= operation.description %></td>
-        <td><%= operation.odate %></td>
-        <td><%= operation.created_at.strftime("%B %d, %Y %I:%M %p") %></td>
+        <td><%= operation.amount %></td>
+        <td><%= operation.odate.strftime("%B %d, %Y %I:%M %p") %></td>
         <td><%= operation.category.name %></td>
         <td>
           <div class="d-flex justify-content gap-3">
@@ -32,5 +32,5 @@
     <% end %>
   </tbody>
 </table>
-
+<%= render "graph" %>
 </div>
