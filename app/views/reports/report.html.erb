@@ -1,0 +1,21 @@
+<%= form_tag reports_path, method: :get do %>
+  <div class="form-group1">
+    <%= label_tag :range, 'Time Range' %>
+    <%= select_tag :range, options_for_select([['Day', 'day'], ['Week', 'week'], ['Month', 'month'], ['Year', 'year'], ['Custom', 'custom']]), { class: 'form-control', onchange: "$(this).closest('form').submit();" } %>
+  </div>
+
+  <div class="form-group1" id="custom-range" style="display:none;">
+    <%= label_tag :start_date, 'Start Date' %>
+    <%= text_field_tag :start_date, nil, { class: 'form-control datepicker', readonly: true } %>
+    <%= label_tag :end_date, 'End Date' %>
+    <%= text_field_tag :end_date, nil, { class: 'form-control datepicker', readonly: true } %>
+  </div>
+
+  <%= submit_tag 'Generate Report', class: 'btn btn-primary' %>
+<% end %>
+
+<% if @chart_data.any? %>
+  <%= column_chart @chart_data, library: { title: { text: 'Operations by Category' } } %>
+<% else %>
+  <p>No data available</p>
+<% end %>

@@ -1,0 +1,6 @@
+<%= stylesheet_link_tag 'custom' %>
+<h1>Reports</h1>
+
+<%= line_chart Operation.group_by_day(:created_at).count %>
+
+<%= pie_chart Category.group(:name).count %>
