@@ -1,8 +1,8 @@
 class Operation < ApplicationRecord
-  belongs to :category
+  belongs_to :category
 
   validates :amount, presence: true, numericality: { greater_than: 0 }
   validates :odate, presence: true
-  validates :description, presence: true, length: { minimum: 6, maximum: 100 }
+  validates :description, presence: true, length: { minimum: 3, maximum: 100 }
 
 end
