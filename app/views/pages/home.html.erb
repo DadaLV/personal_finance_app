@@ -18,17 +18,17 @@
           <th>Date</th>
         </tr>
       </thead>
-      <%# <tbody>
+      <tbody>
         <% @operations.each do |operation| %>
-          <%# <tr>
-            <td><%= link_to operation.name, operation</td> %>
-            <%# <td><%= number_to_currency(operation.amount)</td>  %>
-            <%# <td><%= l operation.odate, format: :short</td> %>
-          <%# </tr> %>
-        <%# <% end %> 
-      <%# </tbody> %> 
+           <tr>
+            <td><%= link_to operation.description, operation %></td>
+             <td><%= number_to_currency(operation.amount)  %></td>
+            <td><%= l operation.odate, format: :short %></td>
+           </tr> 
+        <% end %> 
+      </tbody> 
     </table>
-    <%# <%= link_to "View All Operations", operations_path, class: "btn btn-primary" %> 
+    <%= link_to "View All Operations", operations_path, class: "btn btn-primary" %> 
   </div>
   <div class="col-md-6">
     <h2>Reports</h2>
