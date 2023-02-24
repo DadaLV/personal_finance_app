@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :categories
 
   get "operations/graph"
+  get "/statistics", to: "statistics#index"
 
 
 end
