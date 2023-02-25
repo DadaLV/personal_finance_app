@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   get "operations/graph"
   get "/statistics", to: "statistics#index"
+  get "/statistics/stati", to: "statistics#stati"
 
 
 end

@@ -1,0 +1,39 @@
+<h2>Filter by date range and category</h2>
+<%= form_tag "/statistics/stati", method: :get do %>
+  <%= label_tag :my_category, "Category:" %>
+  <%= select_tag :my_category, options_from_collection_for_select(Category.all, :id, :name, params[:my_category]), include_blank: true %>
+  <%= label_tag :start_date, "Start Date:" %>
+  <%= date_field_tag :start_date, params[:start_date]  %>
+  <%= label_tag :end_date, "End Date:" %>
+  <%= date_field_tag :end_date, params[:end_date]  %>
+  <%= submit_tag "Filter" %>
+<% end %>
+
+<div>
+  <canvas id="myChart" width="600" height="400"></canvas>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const ctx = document.getElementById('myChart');
+
+    const data = {
+      labels: <%=raw @dates %>,
+      datasets: [{
+        label: 'Amount',
+        data: <%= @amount %>,
+        fill: false,
+        borderColor: 'rgb(75, 192, 192)',
+        tension: 0.1
+      }]
+    };
+
+    const config = {
+      type: 'line',
+      data: data,
+      options: {
+        responsive: false
+      }
+    };
+
+    const myChart = new Chart(ctx, config);
+  </script>
+</div>
