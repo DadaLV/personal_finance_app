@@ -1,44 +1,43 @@
-<h2>Filter by date range and category</h2>
-<%= form_tag "", method: :get do %>
-  <%= label_tag :month, "Select Month:" %>
-  <%= select_tag :month, options_for_select(months_options, @selected_month), include_blank: true %>
-  <%= submit_tag "Filter" %>
-<% end %>
+<div class="container col-6">
 
-<div>
-  <canvas id="myChart" width="600" height="400"></canvas>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script>
-    const ctx = document.getElementById("myChart").getContext("2d");
-    const myDoughnutChart = new Chart(ctx, {
-      type: 'doughnut',
-      data: {
+  <h2>Filter by date range and category</h2>
+  <%= form_tag "/statistics/stati", method: :get do %>
+    <%= label_tag :my_category, "Category:" %>
+    <%= select_tag :my_category, options_from_collection_for_select(Category.all, :id, :name, params[:my_category]), include_blank: true %>
+    <%= label_tag :start_date, "Start Date:" %>
+    <%= date_field_tag :start_date, params[:start_date]  %>
+    <%= label_tag :end_date, "End Date:" %>
+    <%= date_field_tag :end_date, params[:end_date]  %>
+    <%= submit_tag "Filter", class: 'btn btn-primary' %>
+  <% end %>
+
+  <div>
+    <canvas id="myChart" width="600" height="400"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      const ctx = document.getElementById('myChart');
+
+      const data = {
+        labels: <%=raw @datess %>,
         datasets: [{
-          data: <%= @data_for_chart.to_json %>,
-          backgroundColor: [
-            '#FF6384',
-            '#36A2EB',
-            '#FFCE56',
-            '#4BC0C0',
-            '#9966FF',
-            '#00E64D',
-            '#C68C53',
-            '#FFB266',
-            '#FF3300'
-          ],
-        }],
-        labels: <%= @data_for_chart.map { |d| d[:label] }.to_json %>,
-      },
-      options: {
-        responsive: true,
-        legend: {
-          position: 'bottom',
-        },
-        title: {
-          display: true,
-          text: 'Total Amount by Category for <%= @selected_month.strftime("%B %Y") %>',
-        },
-      },
-    });
-  </script>
+          label: 'Amount',
+          data: <%= @amount %>,
+          fill: false,
+          borderColor: 'rgb(75, 192, 192)',
+          tension: 0.1
+        }]
+      };
+
+      const config = {
+        type: 'line',
+        data: data,
+        options: {
+          responsive: false
+        }
+      };
+
+      const myChart = new Chart(ctx, config);
+    </script>
+  </div>
+  <%= link_to 'Return to operations listing', operations_path, class: "d-flex justify-content-center mt-3 text-info" %>
 </div>
