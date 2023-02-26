@@ -70,3 +70,15 @@
   background-color: #007bff !important;
   border-color: #007bff !important;
 }
+
+html, body {
+  height: 100%;
+}
+
+#page-content {
+  min-height: calc(100% - 100px);
+}
+
+#sticky-footer {
+  flex-shrink: 0;
+}
