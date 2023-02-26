@@ -11,9 +11,14 @@
 /* Style the jumbotron */
 .p-5 {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: start; 
+  // align-items: center;
   height: 50vh;
+}
+
+.lowpart {
+  height: 50vh;
+  padding: 3rem !important;
 }
 
 .container-fluid {
@@ -29,6 +34,16 @@
 
 .row {
   background-color: #ffc107 !important;
+}
+
+.upperpart {
+  background-color: #007bff;
+  height: 50vh;
+  padding: 3rem;
+  flex-wrap: wrap;
+  margin-top: calc(-1 * var(--bs-gutter-y));
+  margin-right: calc(-.5 * var(--bs-gutter-x));
+  margin-left: calc(-.5 * var(--bs-gutter-x));
 }
 
 /* Style the Latest Operations table */

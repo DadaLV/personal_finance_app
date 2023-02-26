@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root "pages#home"
   resources :operations, only: [:show, :index, :new, :create, :edit, :update, :destroy]
   resources :categories
-
+  get "/about", to: "pages#about"
   get "operations/graph"
   get "/statistics", to: "statistics#index"
   get "/statistics/stati", to: "statistics#stati"
