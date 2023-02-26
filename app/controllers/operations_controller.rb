@@ -24,6 +24,7 @@ class OperationsController < ApplicationController
 
   def create
     @operation = Operation.new(operation_params)
+    @operation.user = User.first
     if @operation.save
       flash[:notice] = "Operation was seccessfully created."
       redirect_to @operation
