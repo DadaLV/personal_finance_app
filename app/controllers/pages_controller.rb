@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
 
   def home
-    @operations = Operation.all
+    @operations = Operation.order(odate: :desc).limit(5)
   end
 
   def about

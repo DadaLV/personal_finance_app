@@ -3,7 +3,7 @@ class OperationsController < ApplicationController
 
   
   def index
-    @operations = Operation.all 
+    @operations = Operation.order(:odate)
     operations_data = Operation.all.map { |op| [op.odate.strftime("%B %d, %Y"), op.amount.to_s] }
     operations_data_sorted = operations_data.sort
 
