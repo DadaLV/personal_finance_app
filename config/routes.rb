@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get "operations/graph"
   get "/statistics", to: "statistics#index"
   get "/statistics/stati", to: "statistics#stati"
+  get "/statistics/select_by_category", to: "statistics#select_by_category"
 
 
 end
