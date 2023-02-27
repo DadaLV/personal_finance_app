@@ -1,7 +1,7 @@
 <div id="page-content" class="container col-6">
   <h2>New Operation</h2>  
   <%= form_with model: @operation do |form| %>
-  <%= render "error_messages" %>
+  <%= render "shared/error_messages", obj: @operation %>
   
 
   <div class="form-group">
@@ -33,5 +33,5 @@
     <%= form.submit "Create", class: "btn btn-primary" %>
   </div>
 <% end %>
-  <%= link_to 'Cancel and return to categories listing', categories_path, class: "d-flex justify-content-center mt-3 text-info" %>
+  <%= link_to 'Cancel and return to categories listing', operations_path, class: "d-flex justify-content-center mt-3 text-info" %>
 </div>

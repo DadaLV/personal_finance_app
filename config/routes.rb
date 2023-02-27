@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   get "/statistics", to: "statistics#index"
   get "/statistics/stati", to: "statistics#stati"
   get "/statistics/select_by_category", to: "statistics#select_by_category"
+  get "signup", to: "users#new"
+  # post "users", to: "users#create"
+  resources :users, except: [:new]
 
 
 end

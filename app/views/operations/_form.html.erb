@@ -1,5 +1,5 @@
 <%= form_with model: @operation do |form| %>
-  <%= render "error_messages" %>
+  <%= render "shared/error_messages", obj: @operation %>
 
   <div class="form-group">
     <%= form.label :odate %>
