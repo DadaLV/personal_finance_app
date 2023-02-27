@@ -1,0 +1,6 @@
+<div id="page-content" class="container col-6">
+  <h2><%= @user.username %>'s profile</h2>  
+  <%= gravatar_for @user, size: 200 %>
+  <h3>Operations:</h3>
+  <%= render "operations/operation" %>
+</div>
