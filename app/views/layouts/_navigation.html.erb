@@ -20,8 +20,8 @@
             Dropdown link
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><%= link_to "Log in", "/login", class: "nav-link" %></li>
+            <li><%= link_to "Log out", "/logout", class: "nav-link", data: { turbo_method: :delete } %></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </li>
