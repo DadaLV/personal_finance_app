@@ -3,12 +3,13 @@ class OperationsController < ApplicationController
 
   
   def index
-    @operations = Operation.order(:odate)
-    operations_data = Operation.all.map { |op| [op.odate.strftime("%B %d, %Y"), op.amount.to_s] }
-    operations_data_sorted = operations_data.sort
+    redirect_to user_path(current_user) if logged_in?
+    # @operations = Operation.order(:odate)
+    # operations_data = Operation.all.map { |op| [op.odate.strftime("%B %d, %Y"), op.amount.to_s] }
+    # operations_data_sorted = operations_data.sort
 
-    @dates = operations_data_sorted.map { |e| e[0] }
-    @amount = operations_data_sorted.map { |e| e[1].to_i }
+    # @dates = operations_data_sorted.map { |e| e[0] }
+    # @amount = operations_data_sorted.map { |e| e[1].to_i }
     # @dates = ["1", "2", "3", "4", "5"]
     # @amount = [10, 20, 30, 40, 0]
     
@@ -24,7 +25,7 @@ class OperationsController < ApplicationController
 
   def create
     @operation = Operation.new(operation_params)
-    @operation.user = User.first
+    @operation.user = current_user
     if @operation.save
       flash[:notice] = "Operation was seccessfully created."
       redirect_to @operation
