@@ -18,7 +18,7 @@
   </div>
 
   <div class="actions">
-    <%= form.submit "Sign up", class: "btn btn-primary" %>
+    <%= form.submit(@user.new_record? ? "Sign up" : "Update", class: "btn btn-primary") %>
   </div>
 <% end %>
 <%= link_to 'Cancel and return to home page', root_path, class: "d-flex justify-content-center mt-3 text-info" %>
