@@ -20,8 +20,10 @@ def stati
   if params[:my_category].present?
     category = Category.find_by(id: params[:my_category])
     operations = category.present? ? category.operations : Operation.all
+    operations = current_user.operations
   else  
   operations = Operation.all
+  operations = current_user.operations
 end
   
   if params[:start_date].present? && params[:end_date].present?
@@ -57,8 +59,10 @@ end
       month_range = month.beginning_of_month..month.end_of_month
     end
 
+    user_id = current_user.id
+
     @categories.each do |category|
-      amount = Operation.where(category_id: category_id || category.id, odate: month_range).sum(:amount)
+      amount = Operation.where(user_id: user_id || current_user.id, category_id: category_id || category.id, odate: month_range).sum(:amount)
       data << { label: category.name, value: amount }
     end
 
@@ -67,8 +71,13 @@ end
 
   def select_by_category
     @selected_month = params[:month] ? Date.strptime(params[:month], '%Y-%m') : Date.today.beginning_of_month
-    @data_for_chart = doughnut_chart_data(@selected_month.beginning_of_month..@selected_month.end_of_month)
+    @data_for_chart = doughnut_chart_data(@selected_month.beginning_of_month..@selected_month.end_of_month, current_user.id)
     @months = generate_month_options(Date.today.beginning_of_year, Date.today.end_of_month)
     
   end
+
+  private
+
+  # def set_user_operstions
+  #   operation
 end
