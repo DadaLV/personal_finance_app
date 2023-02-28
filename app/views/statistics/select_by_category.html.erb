@@ -1,5 +1,13 @@
-<div class="container col-6">
+<div id="page-content" class="container col-6">
+<% if !logged_in? %>
+    
+  <h2>To see your statistics please sign up or log in</h2>
+  <img src="<%= asset_path('statistics_by_category.png') %>" alt="Statistics by category">
 
+  <%= link_to "Sign up", "/signup", class: "btn btn-primary mb-3" %>
+  <%= link_to "Log in", "/login", class: "btn btn-primary mb-3" %>
+    
+<% else %>
   <h2>Select by category</h2>
   <%= form_with url: "/statistics/select_by_category", method: :get do |form| %>
     <%= form.select :month, options_for_select(@months, @selected_month.strftime('%Y-%m')), { include_blank: false }, { class: 'form-control' } %>
@@ -49,4 +57,5 @@
     </script>
   </div>
   <%= link_to 'Return to operations listing', operations_path, class: "d-flex justify-content-center mt-3 text-info" %>
+  <% end %>
 </div>

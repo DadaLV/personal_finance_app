@@ -1,4 +1,11 @@
-<table class="table">
+<% if !logged_in? %>
+    
+  <h2>To see your operations please sign up or log in</h2>
+  <%= link_to "Sign up", "/signup", class: "btn btn-primary mb-3" %>
+  <%= link_to "Log in", "/login", class: "btn btn-primary mb-3" %>
+    
+<% else %>
+  <table class="table">
     <thead>
       <tr>
         <th>Name</th>
@@ -10,6 +17,7 @@
     </thead>
     <tbody>
       <% @operations.each do |operation| %>
+        <% if logged_in? && operation.user == current_user %>
         <tr>
           <td><%= operation.description %></td>
           <td><%= operation.amount %></td>
@@ -23,6 +31,10 @@
             </div>
           </td>
         </tr>
+        <% end %>
       <% end %>
     </tbody>
-  </table> 
+  </table>
+<%# <% else %>
+  <%# <h2>To see your operations please sign up or log in</h2> %>
+<% end %>

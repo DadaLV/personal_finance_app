@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
 
   def show
-    @operations = @user.operations
+    @operations = @user.operations.order(odate: :desc)
   end
 
   def new

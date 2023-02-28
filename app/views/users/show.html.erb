@@ -3,6 +3,7 @@
   <%= gravatar_for @user, size: 200 %>
   <div class="text-center mt-4">
     <%= link_to "Edit profile", edit_user_path(@user), class: "btn btn-primary" %>
+    <%= link_to "Add operation", "/operations/new", class: "btn btn-primary" %>
   </div>
   <h3>Operations:</h3>
   <%= render "operations/operation" %>

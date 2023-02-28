@@ -1,11 +1,14 @@
 <%= stylesheet_link_tag 'category_show' %>
-<div class="container col-6">
+<div id="page-content" class="container col-6">
+  
   <h1>Operations</h1>
-
-  <%= link_to "Create New Operation", new_operation_path, class: "btn btn-info mb-3" %> 
-
+  <% if logged_in? %>
+    <%= link_to "Create New Operation", new_operation_path, class: "btn btn-info mb-3" %> 
+  <% end %>
   <%= render "operation" %>
-  <%= link_to "Show statistics by month", "/statistics/select_by_category", class: "btn btn-primary mb-3" %>
-  <%= link_to "Show statistics by category", "/statistics/stati", class: "btn btn-primary mb-3" %>
-  <%# <%= render "graph" %> 
+  <% if logged_in? %>
+    <%= link_to "Show statistics by month", "/statistics/select_by_category", class: "btn btn-primary mb-3" %>
+    <%= link_to "Show statistics by category", "/statistics/stati", class: "btn btn-primary mb-3" %>
+    <%# <%= render "graph" %> 
+  <% end %>
 </div>
