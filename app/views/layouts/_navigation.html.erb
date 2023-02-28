@@ -9,9 +9,15 @@
         <li class="nav-item">
           <%= link_to "About", "/about", class: "nav-link active" %>
         </li>
-        <li class="nav-item">
-          <%= link_to "Sign up", "/signup", class: "nav-link" %>
-        </li>
+        <% if !logged_in? %>
+          <li class="nav-item">
+            <%= link_to "Sign up", "/signup", class: "nav-link" %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Add operation", new_operation_path, class: "nav-link" %>
+          </li>
+        <% end %>
         <% if logged_in? %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -30,12 +36,14 @@
           </a>
           <ul class="dropdown-menu">
             <% if logged_in? %>
-                <li><%= link_to current_user.username, user_path(current_user), class: "nav-link" %></li>            
+                <li><%= link_to current_user.username, user_path(current_user), class: "nav-link" %></li>
+                <li><%= link_to "Edit your profile", edit_user_path(current_user), class: "dropdown-item" %></li>
+                <li><%= button_to "Delete your profile", user_path(current_user), class: "dropdown-item text-danger", method: :delete, onclick: "return confirm('Are you sure? All your operations will be deleted as well')" %></li>            
+                <li><hr class="dropdown-divider"></li>
                 <li><%= link_to "Log out", "/logout", class: "nav-link", data: { turbo_method: :delete } %></li>
             <% else %>
                 <li><%= link_to "Log in", "/login", class: "nav-link" %></li>
             <% end %>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </li>
       </ul>
