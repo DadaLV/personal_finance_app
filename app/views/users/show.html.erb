@@ -1,6 +1,6 @@
 <div id="page-content" class="container col-6">
   <h2><%= @user.username %>'s profile</h2>  
-  <%= gravatar_for @user, size: 200 %>
+  <%= gravatar_for @user, size: 100 %>
   <div class="text-center mt-4">
     <%= link_to "Edit profile", edit_user_path(@user), class: "btn btn-primary" %>
     <%= link_to "Add operation", "/operations/new", class: "btn btn-primary" %>

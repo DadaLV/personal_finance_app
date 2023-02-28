@@ -1,5 +1,7 @@
 class OperationsController < ApplicationController
   before_action :set_operation, only: [:show, :edit, :update, :destroy]
+  before_action :require_user, except: [:index]
+  before_action :require_same_user, only: [:show, :edit, :update, :destroy]
 
   
   def index
@@ -70,6 +72,13 @@ class OperationsController < ApplicationController
 
   def operation_params
     params.require(:operation).permit(:description, :amount, :odate, :category_id)
+  end
+
+  def require_same_user
+    if current_user != @operation.user
+      flash[:alert] = "You can operate only with your own operation"
+      redirect_to root_path
+    end
   end
 
 end
