@@ -1,5 +1,6 @@
 class StatisticsController < ApplicationController
   include StatisticsHelper
+  before_action :require_user
   
   def index
     # @data_for_chart = []

@@ -1,8 +1,8 @@
-/* Add custom styles for home page */
 @import "bootstrap";
 .blue {
   background-color: #007bff !important;
 }
+
 
 .rounded-3 {
   border-radius: 0.5rem;
@@ -17,8 +17,8 @@
 }
 
 .lowpart {
-  height: 50vh;
-  padding: 3rem !important;
+  padding: 2rem !important;
+  margin: 0;
 }
 
 .container-fluid {
@@ -36,10 +36,15 @@
   background-color: #ffc107 !important;
 }
 
+.table {
+  width: 100%;
+}
+
 .upperpart {
   background-color: #007bff;
   height: 50vh;
-  padding: 3rem;
+  padding: 2rem;
+  margin: 0;
   flex-wrap: wrap;
   margin-top: calc(-1 * var(--bs-gutter-y));
   margin-right: calc(-.5 * var(--bs-gutter-x));
@@ -67,8 +72,8 @@
 }
 
 .btn-info {
-  background-color: #007bff !important;
-  border-color: #007bff !important;
+  background-color: #007bff;
+  border-color: #007bff;
 }
 
 html, body {
@@ -82,3 +87,11 @@ html, body {
 #sticky-footer {
   flex-shrink: 0;
 }
+
+@media (max-width: 991px) {
+  .blue {
+    height: 100%;
+    width: 100%;
+  }
+}
+
