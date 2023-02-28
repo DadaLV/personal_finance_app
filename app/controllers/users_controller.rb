@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
 
   def show
-    @operations = @user.operations.order(odate: :desc)
+    @operations = @user.operations.order(odate: :desc).paginate(page: params[:page], per_page: 7)
   end
 
   def new

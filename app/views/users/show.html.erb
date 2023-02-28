@@ -6,5 +6,11 @@
     <%= link_to "Add operation", "/operations/new", class: "btn btn-primary" %>
   </div>
   <h3>Operations:</h3>
+  <div class="apple_pagination">
+    <%= will_paginate @operations, :container => false %>
+  </div>
   <%= render "operations/operation" %>
+  <div class="apple_pagination">
+    <%= will_paginate @operations, :container => false %>
+  </div>
 </div>

@@ -5,7 +5,13 @@
   <% if logged_in? %>
     <%= link_to "Create New Operation", new_operation_path, class: "btn btn-info mb-3" %> 
   <% end %>
+  <div class="apple_pagination">
+    <%= will_paginate @operations, :container => false %>
+  </div>
   <%= render "operation" %>
+  <div class="apple_pagination">
+    <%= will_paginate @operations, :container => false %>
+  </div>
   <% if logged_in? %>
     <%= link_to "Show statistics by month", "/statistics/select_by_category", class: "btn btn-primary mb-3" %>
     <%= link_to "Show statistics by category", "/statistics/stati", class: "btn btn-primary mb-3" %>

@@ -4,6 +4,7 @@ class OperationsController < ApplicationController
   
   def index
     redirect_to user_path(current_user) if logged_in?
+    @operations = Operation.paginate(page: params[:page], per_page: 7)
     # @operations = Operation.order(:odate)
     # operations_data = Operation.all.map { |op| [op.odate.strftime("%B %d, %Y"), op.amount.to_s] }
     # operations_data_sorted = operations_data.sort
