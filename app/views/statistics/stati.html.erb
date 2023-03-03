@@ -1,4 +1,4 @@
-<div id="page-content" class="container col-6">
+<div id="page-content" class="container col-8">
   <% if !logged_in? %>
     <h2>To see your statistics please sign up or log in</h2>
     <img src="<%= asset_path('statistics_by_date.png') %>" alt="Statistics by date">
@@ -7,44 +7,79 @@
     <%= link_to "Log in", "/login", class: "btn btn-primary mb-3" %>
       
   <% else %>
-    <h2>Filter by date range and category</h2>
-    <%= form_tag "/statistics/stati", method: :get do %>
-      <%= label_tag :my_category, "Category:" %>
-      <%= select_tag :my_category, options_from_collection_for_select(Category.all, :id, :name, params[:my_category]), include_blank: true %>
-      <%= label_tag :start_date, "Start Date:" %>
-      <%= date_field_tag :start_date, params[:start_date]  %>
-      <%= label_tag :end_date, "End Date:" %>
-      <%= date_field_tag :end_date, params[:end_date]  %>
-      <%= submit_tag "Filter", class: 'btn btn-primary' %>
-    <% end %>
+    <h2>All operations by dates</h2>
+    <form action="<%= url_for(action: :stati) %>" method="get">
+      <div>
+        <div class="col-md-6">
+          <label class="form-label"> Select start date: </label>
+          <input class="form-control" type="date" name="start_date">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label"> Select end date: </label>
+          <input class="form-control" type="date" name="end_date">
+        </div>
+      </div>
+      <div class="mt-3">
+        <div class="col-md-6">
+          <button type="submit" class="btn btn-primary">Show</button>
+        </div>  
+      </div>
+    </form>
+    <div class="statistics">
+      <div>
+        <canvas id="myChart" width="400" height="400"></canvas>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+          const ctx = document.getElementById('myChart');
 
-    <div>
-      <canvas id="myChart" width="600" height="400"></canvas>
-      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-      <script>
-        const ctx = document.getElementById('myChart');
+          const data = {
+            labels: <%=raw @operations_date %>,
+            datasets: [{
+              label: 'Amount',
+              data: <%= @operations_sum %>,
+              fill: false,
+              borderColor: 'rgb(75, 192, 192)',
+              tension: 0.1
+            }]
+          };
 
-        const data = {
-          labels: <%=raw @datess %>,
-          datasets: [{
-            label: 'Amount',
-            data: <%= @amount %>,
-            fill: false,
-            borderColor: 'rgb(75, 192, 192)',
-            tension: 0.1
-          }]
-        };
+          const config = {
+            type: 'line',
+            data: data,
+            options: {
+              responsive: false
+            }
+          };
 
-        const config = {
-          type: 'line',
-          data: data,
-          options: {
-            responsive: false
-          }
-        };
-
-        const myChart = new Chart(ctx, config);
-      </script>
+          const myChart = new Chart(ctx, config);
+        </script>
+      </div>
+      <div>
+        <% if @current_user_operations.present? %>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @current_user_operations.each do |operation| %>
+                <tr>
+                  <td><%= operation.odate.strftime("%B %d, %Y") %></td>
+                  <td><%= operation.category.name %></td>
+                  <td><%= operation.description %></td>
+                  <td><%= number_to_currency(operation.amount) %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <% else %>
+          <p>No operations found.</p>
+        <% end %>
+      </div>
     </div>
     <%= link_to 'Return to operations listing', operations_path, class: "d-flex justify-content-center mt-3 text-info" %>
   <% end %>

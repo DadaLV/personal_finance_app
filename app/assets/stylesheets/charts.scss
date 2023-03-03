@@ -1,0 +1,13 @@
+.statistics {
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+}
+
+@media (max-width: 991px) {
+  .statistics {
+   justify-content: center;
+   display: flex;
+   flex-direction: column;
+  }
+}
