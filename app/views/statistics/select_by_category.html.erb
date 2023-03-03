@@ -1,4 +1,4 @@
-<div id="page-content" class="container col-8">
+<div id="page-content" class="container">
   <% if !logged_in? %>
       
     <h2>To see your statistics please sign up or log in</h2>
@@ -28,7 +28,7 @@
     </form>
   <div class="statistics">
     <div>
-      <canvas id="myChart" width="400" height="400"></canvas>
+      <canvas  id="myChart" class="mtChart"></canvas>
       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
       <script>
         const ctx = document.getElementById('myChart');

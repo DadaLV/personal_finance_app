@@ -1,6 +1,7 @@
 @import "bootstrap";
 .blue {
   background-color: #007bff !important;
+  margin-bottom: 0;
 }
 
 
@@ -34,6 +35,10 @@
 
 .row {
   background-color: #ffc107 !important;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px 10px;
+
 }
 
 .table {
@@ -92,6 +97,14 @@ html, body {
   .blue {
     height: 100%;
     width: 100%;
+    
+  
   }
 }
+
+.action_btn {
+  display:flex;
+  justify-content: center;
+}
+
 
