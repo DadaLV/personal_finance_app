@@ -2,7 +2,7 @@ require "test_helper"
 
 class CategoriesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @category = Category.create(name: "Sports")
+    @category = Category.create(name: "Sports", description: "Sports")
     @user1 = User.create(username: "johndoe", email: "johndoe@example.com", password: "password")
     sign_in_as(@user1)
   end
@@ -19,12 +19,12 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  # test "should create category" do
-  #   sign_in_as(@user1)
-  #   assert_difference("Category.count", 1) do
-  #     post categories_url, params: { category: { name: "Vacation" } }
-      
-  #   end
+  test "should create category" do
+    sign_in_as(@user1)
+    assert_difference("Category.count", 1) do
+      post categories_url, params: { category: { name: "Vacation", description: "Vacation" } }
+    end
+  end
 
   #   assert_redirected_to category_url(Category.last)
   # end

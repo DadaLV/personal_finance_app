@@ -24,7 +24,7 @@ class CategoriesController < ApplicationController
       flash[:notice] = "Category was seccessfully created."
       redirect_to @category
     else
-      render :new
+      render "new"
     end 
   end
 
