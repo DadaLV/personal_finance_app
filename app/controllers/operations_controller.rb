@@ -56,14 +56,6 @@ class OperationsController < ApplicationController
     redirect_to operations_url
   end
 
-  def graph
-    # operations_data = Operation.all.map { |op| [op.odate.to_s, op.amount.to_s] }
-    # @dates = operations_data.map { |e| e[0] }
-    # amount = operations_data.map { |e| e[1].to_i }
-    # @dates = ["1", "2", "3", "4", "5"]
-    # @amount = [10, 20, 30, 40, 0]
-  end
-
   private
 
   def set_operation
