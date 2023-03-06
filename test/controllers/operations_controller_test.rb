@@ -20,14 +20,14 @@ class OperationsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  # test "should create operation" do
-  #   sign_in_as(@user1)
-  #   assert_difference -> { Operation.count }, 1 do
-  #     post operations_url, params: { operation: { amount: 25.00, odate: "25.01.2023", description: "cake", category_id: 1 } }
-  #   end
+  test "should create operation" do
+    sign_in_as(@user1)
+    assert_difference -> { Operation.count }, 1 do
+      post operations_url, params: { operation: { amount: 25.00, odate: "25.01.2023", description: "cake", category_id: 1 } }
+    end
 
-  #   assert_redirected_to operation_path(Operation.last)
-  # end
+    assert_redirected_to operation_path(Operation.last)
+  end
 
   # test "should show operation" do
   #   sign_in_as(@user1)
