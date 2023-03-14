@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get "/about", to: "pages#about"
   get "operations/graph"
   get "/statistics", to: "statistics#index"
-  get "/statistics/stati", to: "statistics#stati"
+  get "/statistics/select_by_date", to: "statistics#select_by_date"
   get "/statistics/select_by_category", to: "statistics#select_by_category"
   get "signup", to: "users#new"
   # post "users", to: "users#create"
