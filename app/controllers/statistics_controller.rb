@@ -7,8 +7,8 @@ class StatisticsController < ApplicationController
   
     def select_by_category
       
-      operations = current_user.operations
-      operations = operations.where(odate: start_date..end_date) if start_date && end_date
+      # operations = operations
+      operations = current_user.operations.where(odate: start_date..end_date) if start_date && end_date
       @data = operations.data_for_reports(start_date, end_date).group("category_id").sum(:amount)
   
       operations_data = @data.transform_keys { |category| Category.find_by(id: category).name }.to_a
